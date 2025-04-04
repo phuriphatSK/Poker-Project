@@ -43,6 +43,9 @@ $ npm create vite@latest
 ## Compile and run the project
 
 ```bash
+
+$ npm install
+
 # development
 $ npm run dev
 
