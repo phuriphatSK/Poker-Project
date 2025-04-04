@@ -1,0 +1,92 @@
+.ant-table-thead {
+  tr {
+    th.ant-table-cell {
+      &::before {
+        width: 0 !important;
+      }
+      background-color: #5a378c !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.ant-table {
+  .ant-table-container {
+    .ant-table-content {
+      .ant-table-tbody {
+        overflow-y: scroll;
+      }
+    }
+  }
+  .ant-table-footer {
+    width: 30%;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    justify-self: center;
+  }
+}
+
+.ant-pagination {
+  .ant-pagination-total-text {
+    color: #5a378c !important;
+  }
+  .ant-pagination-prev {
+    a {
+      color: #5a378c !important;
+    }
+  }
+  .ant-pagination-item-active {
+    a {
+      color: #5a378c !important;
+    }
+    border-color: #5a378c !important;
+  }
+  .ant-pagination-options {
+    .ant-select-selector {
+      color: #5a378c !important;
+      border-color: #5a378c !important;
+    }
+  }
+}
+
+.ant-modal-content {
+  .ant-modal-close {
+    padding-top: 17px;
+  }
+}
+
+/* ค่าเริ่มต้นให้พื้นหลังเป็นสีขาว */
+.ant-table-tbody .ant-table-row {
+  background-color: #ffffff !important;
+  color: black;
+  &.ant-table-row-selected > .ant-table-cell {
+    background-color: #e6e1ee !important;
+  }
+}
+
+.ant-table-selection {
+  .ant-checkbox-wrapper {
+    .ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: #5a378c !important;
+        border-color: white !important;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.ant-checkbox-checked {
+  .ant-checkbox-inner {
+    background-color: #5a378c !important;
+  }
+}
+
+.ant-checkbox {
+  .ant-checkbox-inner {
+    border-color: #5a378c !important;
+  }
+}

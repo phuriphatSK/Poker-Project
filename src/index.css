@@ -1,0 +1,15 @@
+@layer tailwind-base, antd;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    background-color: "#F5F1FA" !important;
+    font-family: "Mali" !important;
+  }
+}

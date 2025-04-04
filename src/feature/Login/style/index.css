@@ -1,0 +1,12 @@
+@media (max-width: 1280px) {
+  .ant-space {
+    display: contents;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .ant-modal-content {
+    padding: 0 !important;
+    height: 400px !important;
+  }
+} */

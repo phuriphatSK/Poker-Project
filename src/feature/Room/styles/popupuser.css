@@ -1,0 +1,7 @@
+@media (max-width: 1024px) {
+  .ant-popover-content {
+    .ant-popover-inner {
+      padding: 20px !important;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@media only screen and (max-width: 1024px) {
+  .ant-popover-inner {
+    width: 100vw !important;
+    background-color: white !important;
+  }
+}
+
+.ant-popover {
+  right: 0px !important;
+}
