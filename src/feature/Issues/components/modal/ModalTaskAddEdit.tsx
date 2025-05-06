@@ -29,20 +29,22 @@ export default function IssueModal({
 
   useEffect(() => {
     if (currentIssue) {
-      // กรณีแก้ไข Issue → เติมค่าลงฟอร์ม
+      const issueType = (
+        currentIssue.jiraRawData?.issue as {
+          issuetype?: { name?: string };
+        }
+      )?.issuetype?.name;
+
+      const title = issueType
+        ? `[${issueType}] ${currentIssue.title}`
+        : currentIssue.title;
+
       form.setFieldsValue({
-        title: `[${
-          (
-            currentIssue.jiraRawData?.issue as {
-              issuetype?: { name?: string };
-            }
-          )?.issuetype?.name || ""
-        }] ${currentIssue.title}`,
+        title,
         description: currentIssue.description,
         storyPoints: currentIssue.storyPoints,
       });
     } else {
-      // กรณีเพิ่ม Issue ใหม่ → รีเซ็ตค่าในฟอร์ม
       form.resetFields();
     }
   }, [currentIssue, form]);

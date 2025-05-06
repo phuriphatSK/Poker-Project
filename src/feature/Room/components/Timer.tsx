@@ -10,9 +10,10 @@ import { RevealType } from "../types/room.interface";
 
 const TimerButton: React.FC = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [minutes, setMinutes] = useState<number | null>(null); // Input minutes
-  const [timeLeft, setTimeLeft] = useState<number | null>(null); // Time left in seconds
-  const [isActive, setIsActive] = useState(false); // Timer state
+  const [minutes, setMinutes] = useState<number | null>(null);
+  const [seconds, setSeconds] = useState<number | null>(null); // 🆕
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [isActive, setIsActive] = useState(false);
   const { socket } = useRoomContext();
 
   const handleTimeEnd = React.useCallback(() => {
@@ -27,8 +28,8 @@ const TimerButton: React.FC = () => {
         setTimeLeft((prev) => (prev !== null ? prev - 1 : null));
       }, 1000);
     } else if (timeLeft === 0) {
-      setIsActive(false); // Stop timer when it reaches zero
-      handleTimeEnd(); // Call the handleTimeEnd function
+      setIsActive(false);
+      handleTimeEnd();
     }
 
     return () => {
@@ -37,17 +38,20 @@ const TimerButton: React.FC = () => {
   }, [handleTimeEnd, isActive, timeLeft]);
 
   const handleStartTimer = () => {
-    if (minutes && !isNaN(minutes)) {
-      setTimeLeft(minutes * 60); // Convert minutes to seconds
+    const totalSeconds = (minutes ?? 0) * 60 + (seconds ?? 0); // 🆕 รวมทั้งนาทีและวินาที
+
+    if (totalSeconds > 0) {
+      setTimeLeft(totalSeconds);
       setIsActive(true);
-      setIsPopoverVisible(false); // Close the popup
+      setIsPopoverVisible(false);
     }
   };
 
   const handleResetTimer = () => {
-    setTimeLeft(null); // Reset timeLeft
-    setIsActive(false); // Stop the timer
-    setMinutes(null); // Clear input
+    setTimeLeft(null);
+    setIsActive(false);
+    setMinutes(null);
+    setSeconds(null); // 🆕
   };
 
   const displayTime = () => {
@@ -61,23 +65,32 @@ const TimerButton: React.FC = () => {
 
   const popoverContent = (
     <div className="flex flex-col items-center">
-      <Input
-        type="number"
-        placeholder="Minutes"
-        value={minutes !== null ? minutes : ""}
-        onChange={(e) => setMinutes(Number(e.target.value))}
-        className="mb-2"
-      />
+      <div className="flex gap-2 mb-2">
+        <Input
+          className="w-24"
+          type="number"
+          placeholder="Minutes"
+          value={minutes ?? ""}
+          onChange={(e) => setMinutes(Number(e.target.value))}
+        />
+        <Input
+          className="w-24"
+          type="number"
+          placeholder="Seconds"
+          value={seconds ?? ""}
+          onChange={(e) => setSeconds(Number(e.target.value))}
+        />
+      </div>
       <div className="flex gap-2">
         <Button
           onClick={handleStartTimer}
           icon={<PlayCircleOutlined />}
-          className="bg-[#5A378C] text-white max-sm:w-[165px] max-sm:h-[36px]"
+          className="bg-[#5A378C] text-white max-sm:w-[165px] max-sm:h-[36px] w-24"
         >
           Start
         </Button>
         <Button
-          className="text-[#5A378C] border-transparent max-sm:w-[165px] max-sm:h-[36px] max-sm:border-[#A073CC]"
+          className="text-[#5A378C] border-transparent max-sm:w-[165px] max-sm:h-[36px] max-sm:border-[#A073CC] w-24"
           onClick={handleResetTimer}
           icon={<ReloadOutlined />}
         >
