@@ -30,13 +30,13 @@ export const CardRecend = () => {
   const handleRemove = () => {
     if (!selectedRoom) return;
 
-    deleteRecentRoom.mutate(selectedRoom.id, {
+    deleteRecentRoom.mutate(selectedRoom.code, {
       onSuccess: () => {
-        console.log(`Delete room success: ${selectedRoom.id}`);
+        console.log(`Delete room success: ${selectedRoom.code}`);
 
         // 🔥 ลบห้องออกจาก `rooms` ทันที
         setRooms((prevRooms) =>
-          prevRooms.filter((room) => room.id !== selectedRoom.id)
+          prevRooms.filter((room) => room.id !== selectedRoom.code)
         );
 
         setSelectedRoom(null);
@@ -90,7 +90,7 @@ export const CardRecend = () => {
               !isModalVisible &&
               item.id &&
               navigate({
-                to: `/room/${item.id}`,
+                to: `/room/${item.code}`,
                 search: { role: RoomParticipantRole.Participator },
               })
             }
